@@ -2,3 +2,4 @@ NEU_SEA_DAMG-6210
 
 Books:
   Pearson_Database_Systems_A_Practical_Approach_to_Design_Implementation_and_Management_6th_Global_Edition
+  Microsoft-SQL-Server-2019-A-Beginners-Guide.pdf
