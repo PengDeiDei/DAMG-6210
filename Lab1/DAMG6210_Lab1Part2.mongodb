@@ -1,0 +1,43 @@
+use("DAMG6210_Lab1Part2");
+
+db.lab1.drop();
+
+db.lab1.insertMany([
+ {'CustomerID': 30010, 'LastName': 'Mew', 'FirstName': 'Stephen', 'EmailAddress': 'stephen4@adventure-works.com',
+  'Orders':[
+    {'SalesOrderID': 44529, 'TotalOrderQuantity': 1, 'OrderValue': 472},
+    {'SalesOrderID': 46063, 'TotalOrderQuantity': 1, 'OrderValue': 985},
+  ]
+ },
+ {'CustomerID': 30020, 'LastName': 'Miller', 'FirstName': 'Emilo', 'EmailAddress': 'emilo0@adventure-works.com',
+  'Orders':[
+    {'SalesOrderID': 53525, 'TotalOrderQuantity': 80, 'OrderValue': 592223},
+    {'SalesOrderID': 58968, 'TotalOrderQuantity': 16, 'OrderValue': 141240},
+    {'SalesOrderID': 65286, 'TotalOrderQuantity': 21, 'OrderValue': 134777},
+    {'SalesOrderID': 71838, 'TotalOrderQuantity': 17, 'OrderValue': 103238}
+  ]
+ },
+ {'CustomerID': 30083, 'LastName': 'Track', 'FirstName': 'Glenn', 'EmailAddress': 'glenn0@adventure-works.com',
+  'Orders':[
+    {'SalesOrderID': 47398, 'TotalOrderQuantity': 152, 'OrderValue': 3597824},
+    {'SalesOrderID': 48339, 'TotalOrderQuantity': 124, 'OrderValue': 2574849},
+    {'SalesOrderID': 49496, 'TotalOrderQuantity': 72, 'OrderValue': 1428758},
+    {'SalesOrderID': 50689, 'TotalOrderQuantity': 120, 'OrderValue': 2343950}
+  ]
+ },
+]);
+
+//db.lab1.find({});
+
+//
+db.lab1.aggregate([
+    {$unwind: "$Orders"},
+    {$group:
+        {   
+            _id: null,
+            avgOrderValue: {$avg: "$Orders.OrderValue"},
+            avgOrderQuantity: {$avg: "$Orders.TotalOrderQuantity"}
+        }
+    }
+]);
+//
